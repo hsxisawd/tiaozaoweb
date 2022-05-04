@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block main_body %}
+{% load static from staticfiles %}
+
+
+
+    <section class="content-header">
+      <h1>
+        <small>毕业季旧物转卖</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'indexshop' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">商品首页</li>
+      </ol>
+    </section>
+       <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+
+            <div  class="col-md-8">
+                {% for key,fl in shoplist %}
+                    <div id="{{fl.name}}"></div>
+                <h5 style="padding-bottom:9px;border-bottom:1px solid #eee;color:#BB3D00"><span class="glyphicon glyphicon-list" aria-hidden="true"> {{fl.name}} :</span></h5>
+            <div class="row shoplist">
+      {% for sp in fl.pids %}
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                      <img id="img1" src="{% static 'img' %}/{{sp.cover_pic}}" width="150"  alt="...">
+                      <div class="caption">
+                          <h6>摊位号：{{ sp.booth_num }}</h6>
+                          <h6>商品名称：{{ sp.name }}</h6>
+                          <h6>联系人：{{ sp.user_name }}</h6>
+                          <h6>联系电话：{{ sp.photo }}</h6>
+                         <h6> 微信号：{{ sp.weixin }}</h6>
+                        <div class="bn">价格：￥<span class="price">{{ sp.price }}</span>元
+                            <div>商品介绍：<strong>{{ sp.shoptext }}</strong></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+      {% endfor %}
+    </div>
+   {% endfor %}
+</div>
+</div>
+</div>
+</div>
+    <script>
+    alert('为了丰富大家的在校生活，加上现在大二即将面临离校实习，我们信息学院举办了这一场旧物转让+公益活动，宣扬勤俭朴素、有爱心，达到互惠互利的交易效果，增强理财观念和人际沟通技巧，营造良好协调的校园氛围，现策划安排毕业季旧物转让活动')
+    </script>
+{% endblock %}
